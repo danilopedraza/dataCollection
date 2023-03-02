@@ -22,7 +22,9 @@ Se utilizaron dos servicios que requieren de cuentas de usuario para el uso de s
 
 3. Crear un archivo (en el directorio del repositorio) llamado `shodan_api_key.txt` donde se encuentre solamente la clave de la API de Shodan correspondiente a una cuenta con membresía, membresía académica.
 
-6. En bit.io, crear una base de datos relacional con los comandos SQL en `ONGS.sql`. Los comandos describen las tablas que se llenarán en los scripts.
+6. En bit.io, crear una base de datos relacional con los comandos SQL en `ONGS.sql`. Los comandos describen las tablas que se llenarán en los scripts. Este es el diagrama entidad-relación correspondiente a la base de datos descrita en `ONGS.sql`:
+
+![Diagrama ER](./ER_Diagram.png)
 
 4. Crear un archivo (en el directorio del repositorio) llamado `bitio_api_key.txt` donde se encuentre solamente la clave de API de bit.io correspondiente a la base de datos creada en el paso anterior. La clave debe corresponder a un usuario con permisos para leer y modificar la base de datos.
 
@@ -52,11 +54,11 @@ toda la informaci ́on es obtenida con Shodan.
 10. Ejecutar el script anterior dejará un archivo llamado `hosts.csv` con la información en ese formato. Ahora, hay que ejecutar el archivo `inserts-from-csv.py`, que creará un archivo llamado `nmap-inserts.sql` que creará las
 inserciones en SQL correspondientes. Los comandos en este archivo deben ser ingresados a la base de datos manualmente.
 
-11. Crear una nueva tabla con la tabla de servicios obtenida en el paso 10. Se procede de la siguiente forma:
-    1. aojgaohgaroaw
-    2. oknkllkklkdaaaaaa
+11. Añadir a la tabla `servicio_u` una nueva columna llamada `cpe`, del tipo `varchar(100)`.
 
-12. Ejecutar `get_vuln_info.py`. Al terminar dejará un archivo llamado `vulns.sql` con inserciones a la tabla de vulnerabilidades de la base de datos, que también deben ingresarse manualmente.
+12. Para cada fila de `servicio_u` llenar la columna `cpe` con el código CPE correspondiente más preciso. Nosotros usamos el [diccionario web de la NVD](https://nvd.nist.gov/products/cpe/search).
+
+13. Ejecutar `get_vuln_info.py`. Al terminar dejará un archivo llamado `vulns.sql` con inserciones a la tabla de vulnerabilidades de la base de datos, que también deben ingresarse manualmente.
 
 Tras este procedimiento se han recolectado todos los datos para las tablas que se construyeron al principio.
 
