@@ -2,6 +2,13 @@
 
 En este repositorio se encuentran los scripts que se usaron para la recolección de datos públicos de la infraestructura digital de 43 organizaciones no gubernamentales de la Comunidad Ándina de Naciones.
 
+
+## Observaciones sobre funcionamiento
+
+1. Estos scripts se ejecutaron en un sistema operativo con kernel Linux en su versión 5.10.
+
+2. El script `host_lookup.py` solo funcionará en un sistema operativo GNU/Linux como está escrito, pues usa la utilidad `timeout`.
+
 ## Requisitos de servicios
 
 Se utilizaron dos servicios que requieren de cuentas de usuario para el uso de sus API.
@@ -67,6 +74,3 @@ inserciones en SQL correspondientes. Los comandos en este archivo deben ser ingr
 Tras este procedimiento se han recolectado todos los datos para las tablas que se construyeron al principio.
 
 
-## Comentarios adicionales
-
-Estos scripts se ejecutaron en un sistema operativo con kernel Linux en su versión 5.10. Las rutinas que utilizan Nmap ejecutan comandos que involucran a la utilidad `timeout`.
