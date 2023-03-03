@@ -48,7 +48,7 @@ toda la informaci ́on es obtenida con Shodan.
     CREATE SCHEMA public;
     ```
 
-    2. Crear el esquema de nuevo como en el paso 4.
+    2. Crear el esquema de nuevo como en el paso 5.
     3. Ejecutar los comandos en `db.sql` en la consola de bit.io o con algún cliente de SQL.
 
 11. Ejecutar `loadServices.py`. Al finalizar quedará creado el archivo `servicios.sql` con los servicios desplegados de todas las direcciones IP. De igual manera que el punto anterior, hay que subir manualmente este contenido a la base de datos.
