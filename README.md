@@ -41,11 +41,7 @@ Se utilizaron dos servicios que requieren de cuentas de usuario para el uso de s
 
 8. Añadir al directorio del repositorio un archivo llamado `domains.csv`. El archivo debe tener dos columnas: una llamada `domain` y otra llamada `country`. En cada fila, la columna `domain` tiene un dominio a estudiar y la columna `country` tiene el país de la organización a la que corresponde ese dominio.
 
-9. Ejecutar `main.py`. Con main.py se ejecutan las rutinas
-que obtienen los registros DNS de los dominios en el
-CSV del paso 5. Luego se realizan escaneos a las
-direcciones IP encontradas en los registros. En esta etapa
-toda la informaci ́on es obtenida con Shodan.
+9. Ejecutar `main.py`. Con main.py se ejecutan las rutinas que obtienen los registros DNS de los dominios en `domains.csv`. Luego se realizan escaneos a las direcciones IP encontradas en los registros. En esta etapa toda la información es obtenida con Shodan.
 
 10. Al terminar la ejecución de `main.py` se creará un archivo llamado `db.sql` donde estará condensada toda la información recolectada con Shodan. La información de este archivo puede ser incluída en la base de datos de la siguiente manera, asumiendo que el nombre de el esquema es `public`:
     1. Eliminar las tablas con los siguientes comandos:
