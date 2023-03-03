@@ -1,6 +1,7 @@
 from host_lookup import shodanHostLookup
 import json
 import bitdotio
+
 DB_NAME = open('./db_name.txt', 'r').read()
 
 class ServiceAdder:
@@ -51,20 +52,20 @@ class ServiceAdder:
             servicio_val = servicio.get("product", None)
             version = servicio.get("version", None)
 
-            servicioKey = None
-
-            statement = "SELECT ID FROM SERVICIO_U WHERE SERVICIO = '{}' AND N_VERSION = '{}'".format(servicio_val, version)
-            print(statement)
-            provsSameAsn = self.query(statement)
-            if provsSameAsn == []:
-                values = "{}, {}".format(self.formatValues(servicio_val),
-                self.formatValues(version))
-                statement = "INSERT INTO SERVICIO_U(servicio, n_version) VALUES ({})".format(values)
+            if servicio_val is not None and version is not None:
+                servicioKey = None
+                statement = "SELECT ID FROM SERVICIO_U WHERE SERVICIO = '{}' AND N_VERSION = '{}'".format(servicio_val, version)
+                print(statement)
+                provsSameAsn = self.query(statement)
+                if provsSameAsn == []:
+                    values = "{}, {}".format(self.formatValues(servicio_val),
+                    self.formatValues(version))
+                    statement = "INSERT INTO SERVICIO_U(servicio, n_version) VALUES ({})".format(values)
+                    print(statement)
+                    self.toSql(statement)
+                    servicioKey = self.insert(statement)
+                else:
+                    servicioKey = provsSameAsn[0][0]
+                statement = "INSERT INTO SERVICIO_IP_U(ip, servicio) VALUES({}, {})".format(ipKey, servicioKey)
                 print(statement)
                 self.toSql(statement)
-                servicioKey = self.insert(statement)
-            else:
-                servicioKey = provsSameAsn[0][0]
-            statement = "INSERT INTO SERVICIO_IP_U(ip, servicio) VALUES({}, {})".format(ipKey, servicioKey)
-            print(statement)
-            self.toSql(statement)
