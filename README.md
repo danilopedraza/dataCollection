@@ -43,7 +43,7 @@ Se utilizaron dos servicios que requieren de cuentas de usuario para el uso de s
 
 9. Ejecutar `main.py`. Con main.py se ejecutan las rutinas que obtienen los registros DNS de los dominios en `domains.csv`. Luego se realizan escaneos a las direcciones IP encontradas en los registros. En esta etapa toda la información es obtenida con Shodan.
 
-10. Al terminar la ejecución de `main.py` se creará un archivo llamado `db.sql` donde estará condensada toda la información recolectada con Shodan. La información de este archivo puede ser incluída en la base de datos de la siguiente manera, asumiendo que el nombre de el esquema es `public`:
+10. Al terminar la ejecución de `main.py` se creará un archivo llamado `db.sql` donde estará condensada toda la información recolectada con Shodan. La información de este archivo puede ser incluída en la base de datos de la siguiente manera, asumiendo que `public` es el nombre del esquema:
     1. Eliminar las tablas con los siguientes comandos:
 
     ```
