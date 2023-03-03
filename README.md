@@ -12,7 +12,7 @@ Se utilizaron dos servicios que requieren de cuentas de usuario para el uso de s
 
 ## Instrucciones
 
-1. Clonar el repositorio, ejecutando `git clone {link}`.
+1. Clonar el repositorio, ejecutando `git clone https://github.com/danilopedraza/dataCollection.git`.
 
 2. Instalar los requerimientos con
 
