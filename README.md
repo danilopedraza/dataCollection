@@ -53,9 +53,9 @@ toda la informaci ́on es obtenida con Shodan.
 
 11. Ejecutar `loadServices.py`. Al finalizar quedará creado el archivo `servicios.sql` con los servicios desplegados de todas las direcciones IP. De igual manera que el punto anterior, hay que subir manualmente este contenido a la base de datos.
 
-12. Ejecutar `host_lookup.py`. La rutina principal de este archivo escaneará las direcciones IP encontradas con Nmap. El escaneo de cada dirección tiene un límite de tiempo de 12 horas y la rutina realiza todos los escaneos al mismo tiempo.
+12. Ejecutar `host_lookup.py`. La rutina principal de este archivo escaneará las direcciones IP encontradas con Nmap. El escaneo de cada dirección tiene un límite de tiempo de 12 horas y la rutina realiza todos los escaneos al mismo tiempo. La ejecución de este script dejará al final un archivo llamado `hosts.csv` con la información obtenida.
 
-13. Ejecutar el script anterior dejará un archivo llamado `hosts.csv` con la información en ese formato. Ahora, hay que ejecutar el archivo `inserts-from-csv.py`, que creará un archivo llamado `nmap-inserts.sql` que creará las
+13. Ejecutar el archivo `inserts-from-csv.py`, que creará un archivo llamado `nmap-inserts.sql` que creará las
 inserciones en SQL correspondientes. Los comandos en este archivo deben ser ingresados a la base de datos manualmente.
 
 14. Añadir a la tabla `servicio_u` una nueva columna llamada `cpe`, del tipo `varchar(100)`.
