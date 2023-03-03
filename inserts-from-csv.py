@@ -1,6 +1,7 @@
 import bitdotio
 import pandas as pd
 
+DB_NAME = open('./db_name.txt', 'r').read()
 
 if __name__ == '__main__':
     # Convierte lo obtenido con host_lookup.py en filas para la base de datos
@@ -11,7 +12,7 @@ if __name__ == '__main__':
         SELECT ip, id FROM ip;
     '''
     bitio = bitdotio.bitdotio(API_KEY_BITIO)
-    with bitio.get_connection("jusanchez/ongs") as conn:
+    with bitio.get_connection(DB_NAME) as conn:
         cursor = conn.cursor()
         cursor.execute(statement)
         IPIDList = cursor.fetchall()

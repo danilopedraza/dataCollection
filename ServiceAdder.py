@@ -1,6 +1,8 @@
 from host_lookup import shodanHostLookup
 import json
 import bitdotio
+DB_NAME = open('./db_name.txt', 'r').read()
+
 class ServiceAdder:
     # Añade una dirección IP y sus servicios asociados
 
@@ -20,14 +22,14 @@ class ServiceAdder:
 
     def query(self, statement):
             bitio = bitdotio.bitdotio(self.API_KEY_BITIO)
-            with bitio.get_connection("jusanchez/ongs") as conn:
+            with bitio.get_connection(DB_NAME) as conn:
                 cursor = conn.cursor()
                 cursor.execute(statement)
                 return cursor.fetchall()
 
     def insert(self, statement):
         bitio = bitdotio.bitdotio(self.API_KEY_BITIO)
-        with bitio.get_connection("jusanchez/ongs") as conn:
+        with bitio.get_connection(DB_NAME) as conn:
             cursor = conn.cursor()
             cursor.execute(statement + "RETURNING id")
             id = cursor.fetchone()[0]

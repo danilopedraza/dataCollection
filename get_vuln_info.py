@@ -2,6 +2,7 @@ import bitdotio
 import requests
 import time
 
+DB_NAME = open('./db_name.txt', 'r').read()
 
 def getVulnsFrom(CPECode):
     # Busca vulnerabilidades relacionadas a un código CPE
@@ -66,7 +67,7 @@ if __name__ == '__main__':
     '''
     
     bitio = bitdotio.bitdotio(API_KEY_BITIO)
-    with bitio.get_connection("jusanchez/ongs") as conn:
+    with bitio.get_connection(DB_NAME) as conn:
         cursor = conn.cursor()
         cursor.execute(statement)
         serviceList = cursor.fetchall()

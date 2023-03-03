@@ -2,6 +2,8 @@ from host_lookup import *
 from dns_lookup import *
 import bitdotio
 
+DB_NAME = open('./db_name.txt', 'r').read()
+
 class AddDomain:
     # Clase para hacer las consultas de un dominio
     def __init__(self) -> None:
@@ -72,7 +74,7 @@ class AddDomain:
         # Hace una inserción en alguna tabla de la base de datos
         # alojada en bit.io. No hay ningún tipo de verificación!
         bitio = bitdotio.bitdotio(self.API_KEY_BITIO)
-        with bitio.get_connection("jusanchez/ongs") as conn:
+        with bitio.get_connection(DB_NAME) as conn:
             cursor = conn.cursor()
             cursor.execute(statement + "RETURNING id")
             id = cursor.fetchone()[0]
@@ -83,7 +85,7 @@ class AddDomain:
         # Realiza una consulta en la base de datos alojada en bit.io
         # Tampoco hay verificaciones, la diferencia con insert es casi de nombre
         bitio = bitdotio.bitdotio(self.API_KEY_BITIO)
-        with bitio.get_connection("jusanchez/ongs") as conn:
+        with bitio.get_connection(DB_NAME) as conn:
             cursor = conn.cursor()
             cursor.execute(statement)
             return cursor.fetchall()

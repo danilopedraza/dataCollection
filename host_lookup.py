@@ -5,6 +5,8 @@ import re
 import requests
 import subprocess
 
+DB_NAME = open('./db_name.txt', 'r').read()
+
 def NmapHostLookup(host, IPv6=False):
     # Se ejecuta el timeout {tiempo} comando nmap -p- -verbose {host}
     # gtimeout es el identificador del comando timeout en MacOS
@@ -89,7 +91,7 @@ if __name__ == '__main__':
     '''
     
     bitio = bitdotio.bitdotio(API_KEY_BITIO)
-    with bitio.get_connection("jusanchez/ongs") as conn:
+    with bitio.get_connection(DB_NAME) as conn:
         cursor = conn.cursor()
         cursor.execute(statement)
         IPList = cursor.fetchall()
