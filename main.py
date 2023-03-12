@@ -1,5 +1,5 @@
 import pandas as pd
-from FillDB import AddDomain
+from fill_db import AddDomain
 
 def main():
     # El que se suponía iba a ser el hilo principal del programa.

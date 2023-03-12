@@ -1,4 +1,4 @@
-from ServiceAdder import *
+from service_adder import *
 
 adder = ServiceAdder()
 resSet = adder.query("SELECT IP.ID, IP.IP, ONGS.DOMINIO FROM IP INNER JOIN ONGS ON IP.DOMINIO = ONGS.ID")
