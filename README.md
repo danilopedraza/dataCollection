@@ -2,6 +2,13 @@
 
 En este repositorio se encuentran los scripts que se usaron para la recolección de datos públicos de la infraestructura digital de 43 organizaciones no gubernamentales de la Comunidad Ándina de Naciones.
 
+
+## Observaciones sobre funcionamiento
+
+1. Estos scripts se ejecutaron en un sistema operativo con kernel Linux en su versión 5.10.
+
+2. El script `host_lookup.py` solo funcionará en un sistema operativo GNU/Linux como está escrito, pues usa la utilidad `timeout`.
+
 ## Requisitos de servicios
 
 Se utilizaron dos servicios que requieren de cuentas de usuario para el uso de sus API.
@@ -34,13 +41,9 @@ Se utilizaron dos servicios que requieren de cuentas de usuario para el uso de s
 
 8. Añadir al directorio del repositorio un archivo llamado `domains.csv`. El archivo debe tener dos columnas: una llamada `domain` y otra llamada `country`. En cada fila, la columna `domain` tiene un dominio a estudiar y la columna `country` tiene el país de la organización a la que corresponde ese dominio.
 
-9. Ejecutar `main.py`. Con main.py se ejecutan las rutinas
-que obtienen los registros DNS de los dominios en el
-CSV del paso 5. Luego se realizan escaneos a las
-direcciones IP encontradas en los registros. En esta etapa
-toda la informaci ́on es obtenida con Shodan.
+9. Ejecutar `main.py`. Con main.py se ejecutan las rutinas que obtienen los registros DNS de los dominios en `domains.csv`. Luego se realizan escaneos a las direcciones IP encontradas en los registros. En esta etapa toda la información es obtenida con Shodan.
 
-10. Al terminar la ejecución de `main.py` se creará un archivo llamado `db.sql` donde estará condensada toda la información recolectada con Shodan. La información de este archivo puede ser incluída en la base de datos de la siguiente manera, asumiendo que el nombre de el esquema es `public`:
+10. Al terminar la ejecución de `main.py` se creará un archivo llamado `db.sql` donde estará condensada toda la información recolectada con Shodan. La información de este archivo puede ser incluída en la base de datos de la siguiente manera, asumiendo que `public` es el nombre del esquema:
     1. Eliminar las tablas con los siguientes comandos:
 
     ```
@@ -53,9 +56,9 @@ toda la informaci ́on es obtenida con Shodan.
 
 11. Ejecutar `loadServices.py`. Al finalizar quedará creado el archivo `servicios.sql` con los servicios desplegados de todas las direcciones IP. De igual manera que el punto anterior, hay que subir manualmente este contenido a la base de datos.
 
-12. Ejecutar `host_lookup.py`. La rutina principal de este archivo escaneará las direcciones IP encontradas con Nmap. El escaneo de cada dirección tiene un límite de tiempo de 12 horas y la rutina realiza todos los escaneos al mismo tiempo.
+12. Ejecutar `host_lookup.py`. La rutina principal de este archivo escaneará las direcciones IP encontradas con Nmap. El escaneo de cada dirección tiene un límite de tiempo de 12 horas y la rutina realiza todos los escaneos al mismo tiempo. La ejecución de este script dejará al final un archivo llamado `hosts.csv` con la información obtenida.
 
-13. Ejecutar el script anterior dejará un archivo llamado `hosts.csv` con la información en ese formato. Ahora, hay que ejecutar el archivo `inserts-from-csv.py`, que creará un archivo llamado `nmap-inserts.sql` que creará las
+13. Ejecutar el archivo `inserts-from-csv.py`, que creará un archivo llamado `nmap-inserts.sql` que creará las
 inserciones en SQL correspondientes. Los comandos en este archivo deben ser ingresados a la base de datos manualmente.
 
 14. Añadir a la tabla `servicio_u` una nueva columna llamada `cpe`, del tipo `varchar(100)`.
@@ -67,6 +70,3 @@ inserciones en SQL correspondientes. Los comandos en este archivo deben ser ingr
 Tras este procedimiento se han recolectado todos los datos para las tablas que se construyeron al principio.
 
 
-## Comentarios adicionales
-
-Estos scripts se ejecutaron en un sistema operativo con kernel Linux en su versión 5.10. Las rutinas que utilizan Nmap ejecutan comandos que involucran a la utilidad `timeout`.
